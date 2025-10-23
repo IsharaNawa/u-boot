@@ -82,15 +82,14 @@ CONFIG_CMD_GPT=y
 #
 CONFIG_USE_BOOTCOMMAND=y
 CONFIG_BOOTCOMMAND="mmc dev 0; \
-  fatload mmc 0:1 0x80400000 Image; \
+  fatload mmc 0:1 0x80200000 Image; \
   fatload mmc 0:1 0x88000000 DSPV128D128RocketGENESYS2Config.dtb; \
-  booti 0x80400000 - 0x88000000"
+  booti 0x80200000 - 0x88000000"
 
 CONFIG_AUTOBOOT=y
 CONFIG_BOOTDELAY=2
 CONFIG_USE_BOOTARGS=y
-#CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sbin/init ext4.lazy_itable_init=0 ext4.lazy_journal_init=0"
-CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sbin/init"
+CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sbin/init ext4.lazy_itable_init=0 ext4.lazy_journal_init=0"
 
 #
 # 定時器 / IRQ
