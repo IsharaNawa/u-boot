@@ -1,5 +1,5 @@
 #
-# CPU / Architecture
+# CPU / 架構
 #
 CONFIG_RISCV=y
 CONFIG_ARCH_RV64I=y
@@ -8,14 +8,14 @@ CONFIG_CPU_RISCV=y
 CONFIG_RISCV_SMODE=y
 
 #
-# Basic Configuration
+# 基本配置
 #
 CONFIG_DM=y
 CONFIG_SYS_MALLOC_LEN=0x800000
 CONFIG_SYS_MALLOC_F_LEN=0x4000
 
 #
-# Board Configuration
+# 板子對應
 #
 CONFIG_TARGET_GENESYS2=y
 CONFIG_SYS_CONFIG_NAME="genesys2"
@@ -23,8 +23,8 @@ CONFIG_OF_EMBED=y
 CONFIG_DEFAULT_DEVICE_TREE="DSPV128D128RocketGENESYS2Config"
 
 #
-# DDR / U-Boot Address Layout
-# OpenSBI occupies 0x80000000–0x8003FFFF
+# DDR / U-Boot 位址規劃
+# OpenSBI 佔用 0x80000000–0x8003FFFF
 #
 CONFIG_TEXT_BASE=0x80200000
 CONFIG_SYS_UBOOT_START=0x80200000
@@ -63,7 +63,7 @@ CONFIG_DM_MMC=y
 CONFIG_CMD_MMC=y
 
 #
-# File Systems
+# 檔案系統
 #
 CONFIG_FS_FAT=y
 CONFIG_CMD_EXT2=y
@@ -93,7 +93,7 @@ CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sb
 #CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sbin/init"
 
 #
-# Timer / IRQ
+# 定時器 / IRQ
 #
 CONFIG_TIMER=y
 CONFIG_RISCV_TIMER=y
@@ -102,7 +102,7 @@ CONFIG_CMODEL_MEDANY=y
 # CONFIG_TIMER_EARLY is not set
 
 #
-# Debug / Test Tools
+# Debug / 測試工具
 #
 CONFIG_LOG=y
 CONFIG_LOG_DEFAULT_LEVEL=7

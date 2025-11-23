@@ -2,7 +2,7 @@
 
 set -e
 
-UBOOT_DIR=~/Research/repos/u-boot
+UBOOT_DIR=~/u-boot
 
 cd $UBOOT_DIR
 
