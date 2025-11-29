@@ -14,7 +14,7 @@
 	L2: cpus {
 		#address-cells = <1>;
 		#size-cells = <0>;
-		timebase-frequency = <50000>;
+		timebase-frequency = <1000000>;
 		L14: cpu@0 {
 			clock-frequency = <0>;
 			compatible = "sifive,rocket0", "riscv";
@@ -37,7 +37,7 @@
 			riscv,pmpgranularity = <4>;
 			riscv,pmpregions = <8>;
 			status = "okay";
-			timebase-frequency = <50000>;
+			timebase-frequency = <1000000>;
 			tlb-split;
 			L12: interrupt-controller {
 				#interrupt-cells = <1>;
