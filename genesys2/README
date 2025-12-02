@@ -1,0 +1,30 @@
+# U-Boot Build Guide for Genesys2
+
+## Important Files
+
+### 1. u-boot/configs/genesys2_defconfig
+
+- Default configuration file for building U-Boot for Genesys2 board
+- Specifies the device tree (DTS) file via the `CONFIG_DEFAULT_DEVICE_TREE` parameter
+- You can create custom config files in this directory for different hardware configurations
+
+### 2. u-boot/genesys2/setup_genesys2.sh
+
+- Build script for generating the U-Boot binary for a specified DTS file for Genesys2
+- Automatically extracts the DTS name from the config file
+- Copies the built binary to `../../build/<dts_name>/u-boot.bin`
+- Includes error handling and verification at each build step
+- Successful build will result in "Build process completed successfully" message and "Build for opensbi now can proceed." message
+
+**Usage:**
+```bash
+cd u-boot/gensys2
+./setup_genesys2.sh
+```
+
+**Customization:**
+- To use a different config file, modify the `CONFIG_FILE` variable at the top of the script
+- Default: `CONFIG_FILE="genesys2_defconfig"`
+
+**Next Steps:**
+After successful U-Boot build, proceed with OpenSBI build which uses the generated U-Boot binary as a payload.
