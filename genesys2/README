@@ -11,9 +11,7 @@
 ### 2. u-boot/genesys2/setup_genesys2.sh
 
 - Build script for generating the U-Boot binary for a specified DTS file
-- Automatically extracts the DTS name from the config file
 - Copies the built binary to `../../build/<dts_name>/u-boot.bin`
-- Includes error handling and verification at each build step
 
 ## Build Instructions
 
