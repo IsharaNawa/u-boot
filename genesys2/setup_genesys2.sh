@@ -22,7 +22,7 @@ if [ -z "$DTS_NAME" ]; then
 fi
 
 # Set build directory after DTS_NAME is extracted
-BUILD_DIR="../../build/$DTS_NAME"
+BUILD_DIR="../build/$DTS_NAME"
 
 # Clean previous build
 echo "Cleaning previous build..."
