@@ -10,21 +10,50 @@
 
 ### 2. u-boot/genesys2/setup_genesys2.sh
 
-- Build script for generating the U-Boot binary for a specified DTS file for Genesys2
+- Build script for generating the U-Boot binary for a specified DTS file
 - Automatically extracts the DTS name from the config file
 - Copies the built binary to `../../build/<dts_name>/u-boot.bin`
 - Includes error handling and verification at each build step
-- Successful build will result in "Build process completed successfully" message and "Build for opensbi now can proceed." message
 
-**Usage:**
-```bash
-cd u-boot/gensys2
-./setup_genesys2.sh
-```
+## Build Instructions
 
-**Customization:**
-- To use a different config file, modify the `CONFIG_FILE` variable at the top of the script
-- Default: `CONFIG_FILE="genesys2_defconfig"`
+### Prerequisites
+- RISC-V cross-compiler (`riscv64-linux-gnu-gcc`)
+- Device tree source file (`.dts`) placed in `u-boot/arch/riscv/dts/`
+- Compiled device tree binary (`.dtb`) generated during build
 
-**Next Steps:**
+### Steps to Build U-Boot
+
+1. **Place your device tree file**
+   ```bash
+   cp your_design.dts u-boot/arch/riscv/dts/
+   ```
+
+2. **Update the configuration file**
+   - Edit `u-boot/configs/genesys2_defconfig` (or your custom config file)
+   - Modify the `CONFIG_DEFAULT_DEVICE_TREE` line to match your DTS filename (without `.dts` extension)
+   ```
+   CONFIG_DEFAULT_DEVICE_TREE="your_design_name"
+   ```
+
+3. **Customize the build script (optional)**
+   - If using a non-default config, edit `setup_genesys2.sh`
+   - Change the `CONFIG_FILE` variable at the top of the script
+   ```bash
+   CONFIG_FILE="your_custom_defconfig"
+   ```
+
+4. **Run the build script**
+   ```bash
+   cd u-boot/genesys2
+   ./setup_genesys2.sh
+   ```
+
+5. **Verify the build**
+   - Look for success messages:
+     - "U-Boot successfully built"
+     - "Build process completed successfully"
+   - Binary location: `../../build/<dts_name>/u-boot.bin`
+
+### Next Steps
 After successful U-Boot build, proceed with OpenSBI build which uses the generated U-Boot binary as a payload.
