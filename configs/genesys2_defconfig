@@ -20,7 +20,7 @@ CONFIG_SYS_MALLOC_F_LEN=0x4000
 CONFIG_TARGET_GENESYS2=y
 CONFIG_SYS_CONFIG_NAME="genesys2"
 CONFIG_OF_EMBED=y
-CONFIG_DEFAULT_DEVICE_TREE="FiveRocketCoreWithFiveISBWith256Depth64WidthFanOffCSRHWEnabled80FreqConfig"
+CONFIG_DEFAULT_DEVICE_TREE="FiveRocketCoreFourInterruptAwareMMIOFIFOUsingBRAMWithDebugEnabledWithDepth256Size64Genesys2With80FreqConfig"
 
 
 #
@@ -90,6 +90,14 @@ CONFIG_BOOTCOMMAND="mmc dev 0; \
 CONFIG_AUTOBOOT=y
 CONFIG_BOOTDELAY=2
 CONFIG_USE_BOOTARGS=y
+# CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rootwait rw console=ttySIF0,115200 earlycon init=/sbin/init ext4.lazy_itable_init=0 ext4.lazy_journal_init=0 isolcpus=1,2,3,4"
+# Path A: stock uio_pdrv_genirq binds to each interrupt-aware-mmio-fifo DT node.
+# Only the FIRST interrupt of each node (producer_wake, hwirq[0]) is exposed via /dev/uioN.
+# Consumer_wake (hwirq[1]) is NOT reachable through stock uio_pdrv_genirq.
+# CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rootwait rw console=ttySIF0,115200 earlycon init=/sbin/init ext4.lazy_itable_init=0 ext4.lazy_journal_init=0 isolcpus=1,2,3,4 uio_pdrv_genirq.of_id=ishara,interrupt-aware-mmio-fifo"
+# Path B: custom isb_uio.ko module binds each ISB to TWO /dev/uioN entries
+# (producer + consumer). Do NOT pass uio_pdrv_genirq.of_id here, otherwise the
+# stock driver wins the probe race and isb_uio cannot bind.
 CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rootwait rw console=ttySIF0,115200 earlycon init=/sbin/init ext4.lazy_itable_init=0 ext4.lazy_journal_init=0 isolcpus=1,2,3,4"
 #CONFIG_BOOTARGS="root=/dev/mmcblk0p2 rw console=ttySIF0,115200 earlycon init=/sbin/init"
 
